@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="data:" rel="icon" />
+    <title>long</title>
+    <style>
+      #long div {
+        contain: strict;
+        height: 12em;
+      }
+    </style>
+  </head>
+  <body style="display: flex; justify-content: center; line-height: 1.2">
+    <pre id="long">,
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      Hi
+      '</pre>
+    <script>
+      const root = document.documentElement;
+      const legs = document.createElement("div");
+      long.textContent = "\n".repeat(25);
+      horse.append(long);
+
+      const fitLegs = () => {
+        const legsToFit = Math.ceil(
+          (window.innerHeight - document.body.scrollHeight) / legs.clientHeight
+        );
+
+        for (let i = legsToFit; i > 0; i--) {
+          horse.append(legs.cloneNode(true));
+        }
+      };
+
+      // todo: benchmark requestAnimationFrame throttling
+      const addLegs = () => {
+        const fromBottom =
+          root.scrollHeight - root.clientHeight - root.scrollTop;
+
+        if (fromBottom <= legs.clientHeight) {
+          horse.append(legs.cloneNode(true));
+        }
+      };
+
+      fitLegs();
+      window.addEventListener("resize", fitLegs, { passive: true });
+      window.addEventListener("scroll", addLegs, { passive: true });
+    </script>
+  </body>
+</html>
