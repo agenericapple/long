@@ -32,33 +32,33 @@
       '</pre>
     <script>
       const root = document.documentElement;
-      const legs = document.createElement("div");
-      long.textContent = "Hi\n".repeat(25);
-      horse.append(long);
+      const longers = document.createElement("div");
+      longs.textContent = "Hi\n".repeat(25);
+      long.append(longs);
 
-      const fitLegs = () => {
-        const legsToFit = Math.ceil(
-          (window.innerHeight - document.body.scrollHeight) / legs.clientHeight
+      const fit = () => {
+        const toFit = Math.ceil(
+          (window.innerHeight - document.body.scrollHeight) / long.clientHeight
         );
 
         for (let i = legsToFit; i > 0; i--) {
-          horse.append(legs.cloneNode(true));
+          long.append(longs.cloneNode(true));
         }
       };
 
       // todo: benchmark requestAnimationFrame throttling
-      const addLegs = () => {
+      const addLongs = () => {
         const fromBottom =
           root.scrollHeight - root.clientHeight - root.scrollTop;
 
-        if (fromBottom <= legs.clientHeight) {
-          horse.append(legs.cloneNode(true));
+        if (fromBottom <= long.clientHeight) {
+          long.append(longs.cloneNode(true));
         }
       };
 
-      fitLegs();
-      window.addEventListener("resize", fitLegs, { passive: true });
-      window.addEventListener("scroll", addLegs, { passive: true });
+      fit();
+      window.addEventListener("resize", fit, { passive: true });
+      window.addEventListener("scroll", addLongs, { passive: true });
     </script>
   </body>
 </html>
